@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --inline --progress",
+    "build": "webpack --progress",
+    "re-build" : "rimraf dist && webpack --progress",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -13,6 +15,7 @@
   "devDependencies": {
     "css-loader": "^0.23.1",
     "html-webpack-plugin": "^2.17.0",
+    "rimraf": "^2.5.2",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
