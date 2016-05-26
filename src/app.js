@@ -1,2 +1,8 @@
 var msg = require("./contents.js");
-document.write(msg);
+require("./message.css");
+var div = document.createElement("div");
+div.id="message";
+var txtNode = document.createTextNode(msg);
+div.appendChild(txtNode);
+document.body.appendChild(div);
+

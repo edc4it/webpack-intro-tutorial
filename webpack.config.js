@@ -5,10 +5,18 @@ module.exports = {
         path: "./dist",
         filename: "[name].js"
     },
-    plugins : [
+    module: {
+        loaders: [
+            {
+                test: /\.css$/,
+                loader: "style!css"
+            }
+        ]
+    },
+    plugins: [
         new HtmlWebpackPlugin({
             template: "./src/index.html",
-            inject : "body"
+            inject: "body"
         })
     ]
 };
