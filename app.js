@@ -1,1 +1,2 @@
-document.write("Hello World");
+var msg = require("./contents.js");
+document.write(msg);
