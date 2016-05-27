@@ -1,5 +1,5 @@
 import msg from "./contents.ts";
-import "./message.css";
+import "./message.scss";
 import * as $ from "jquery";
 $(() => {
     $("<div id='message'>")
