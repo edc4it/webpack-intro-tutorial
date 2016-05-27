@@ -1,0 +1,1 @@
+export default  "Hello ts World";

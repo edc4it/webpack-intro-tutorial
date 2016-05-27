@@ -1,11 +1,11 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var webpack  = require("webpack");
+var webpack = require("webpack");
 
 module.exports = {
-    
+
     entry: {
-        app: "./src/app.js",
-        vendor: "./src/vendor.js"
+        app: "./src/app.ts",
+        vendor: "./src/vendor.ts"
     },
     output: {
         path: "./dist",
@@ -13,6 +13,10 @@ module.exports = {
     },
     module: {
         loaders: [
+            {
+                test: /\.ts$/,
+                loader: "ts"
+            },
             {
                 test: /\.css$/,
                 loader: "style!css"

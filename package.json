@@ -6,8 +6,9 @@
   "scripts": {
     "start": "webpack-dev-server --inline --progress",
     "build": "webpack --progress",
-    "re-build" : "rimraf dist && webpack --progress",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "re-build": "rimraf dist && webpack --progress",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "typings install"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +18,9 @@
     "html-webpack-plugin": "^2.17.0",
     "rimraf": "^2.5.2",
     "style-loader": "^0.13.1",
+    "ts-loader": "^0.8.2",
+    "typescript": "^1.8.10",
+    "typings": "^1.0.4",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
   },
