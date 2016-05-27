@@ -21,6 +21,12 @@ module.exports = {
                 test: /\.css$/,
                 loader: "style!css"
             }
+        ],
+        preLoaders: [
+            {
+                test: /\.ts$/,
+                loader: 'tslint'
+            }
         ]
     },
     plugins: [
