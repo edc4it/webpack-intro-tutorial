@@ -1,41 +1,43 @@
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var webpack = require("webpack");
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require("webpack");
 
 module.exports = {
-
+    resolve: {
+        extensions: ['.js', '.ts']
+    },
     entry: {
-        app: "./src/app.ts",
-        vendor: "./src/vendor.ts"
+        main: "./src/app.ts",
+        vendor: "./src/vendor.js"
     },
     output: {
-        path: "./dist",
-        filename: "[name].js"
+        path: path.resolve(__dirname, 'dist'), // output directory
+        filename: "[name].js" // name of the generated bundle
     },
     module: {
-        loaders: [
-            {
-                test: /\.ts$/,
-                loader: "ts"
-            },
+        rules: [
             {
                 test: /\.css$/,
-                loader: "style!css"
+                loader: ["style-loader", "css-loader"]
+            },
+            {
+                test: /\.ts$/,
+                loader: "awesome-typescript-loader"
+            },
+            {
+                test: /\.ts$/,
+                enforce: "pre",
+                loader: 'tslint-loader'
             },
             {
                 test: /\.scss$/,
-                loader: "style!css?sourceMap!sass?sourceMap"
-            }
-        ],
-        preLoaders: [
-            {
-                test: /\.ts$/,
-                loader: 'tslint'
+                loader: ["style-loader", "css-loader?sourceMap", "sass-loader?sourceMap"]
             }
         ]
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: "./src/index.html",
+            template: "src/index.html",
             inject: "body"
         }),
         new webpack.optimize.CommonsChunkPlugin({

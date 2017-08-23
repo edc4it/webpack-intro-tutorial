@@ -1,1 +1,1 @@
-export default  "Hello ts World";
+export default  "hello ts friend";
