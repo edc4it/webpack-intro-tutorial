@@ -1,1 +1,2 @@
-export default  "hello ts friend";
+const m: string = 'hello friend!';
+export default m;

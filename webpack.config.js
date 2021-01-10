@@ -1,55 +1,41 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require("webpack");
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
-  mode: 'development',	
-  resolve: {
-    extensions: ['.js', '.ts']
-  },
-  entry: {
-    main: "./src/index.ts",
-    vendor: "./src/vendor.js"
-  },
+  entry: './src/index.ts', // bundle's entry point
   output: {
     path: path.resolve(__dirname, 'dist'), // output directory
-    filename: "[name].js" // name of the generated bundle
+    filename: '[name].js', // name of the generated bundle
   },
+  resolve: {
+    extensions: ['.js', '.ts'],
+  },
+  mode: 'production',
   module: {
-    rules: [{
-        test: /\.css$/,
-        loader: ["style-loader", "css-loader"]
-      },
+    rules: [
       {
         test: /\.ts$/,
-        loader: "awesome-typescript-loader"
-      },
-      {
-        test: /\.ts$/,
-        enforce: "pre",
-        loader: 'tslint-loader'
+        loader: 'ts-loader',
+        exclude: /node_modules/,
       },
       {
         test: /\.scss$/,
-        loader: ["style-loader", "css-loader?sourceMap", "sass-loader?sourceMap"]
-      }
-    ]
-  },
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          chunks: 'initial',
-          name: 'vendor',
-          test: 'vendor',
-        },
+        use: ['style-loader', 'css-loader?sourceMap', 'sass-loader?sourceMap'],
       },
-    }
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "src/index.html",
-      inject: "body"
-    })
-  ]
+      template: './src/index.html',
+      inject: 'body',
+    }),
+    new ESLintPlugin({
+      extensions: ['ts', 'tsx'],
+    }),
+  ],
 };
